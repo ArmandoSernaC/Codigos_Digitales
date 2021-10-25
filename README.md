@@ -1,2 +1,2 @@
-# Codigos_Digitales
-Códigos usados a lo largo de mi paso por la clase de Sistemas Electrónicos Digitales
+# Proyecto1_Digitales
+Código  usado  en el proyecto 1 de Sistemas Electrónicos Digitales
