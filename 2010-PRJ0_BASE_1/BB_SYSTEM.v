@@ -40,6 +40,8 @@ module BB_SYSTEM (
 //  PARAMETER declarations
 //=======================================================
 	parameter DATAWIDTH_BUS = 8;
+	parameter DATAWIDTH_OBSTACLESselection = 8;
+	parameter DATAWIDTH_HOUSESselection = 8;
 	parameter PRESCALER_DATAWIDTH = 23;
 	parameter DISPLAY_DATAWIDTH = 12;
 
@@ -194,9 +196,68 @@ input		BB_SYSTEM_rightButton_InLow;
 //  REG/WIRE declarations
 //=======================================================
 // BUTTONs
-wire 	BB_SYSTEM_startButton_InLow_cwire;
-wire 	BB_SYSTEM_leftButton_InLow_cwire;
-wire 	BB_SYSTEM_rightButton_InLow_cwire;
+wire	BB_SYSTEM_resetButton_InHigh_wire;
+wire 	BB_SYSTEM_startButton_InLow_wire;
+wire 	BB_SYSTEM_leftButton_InLow_wire;
+wire 	BB_SYSTEM_rightButton_InLow_wire;
+
+
+
+//POINT
+wire 	[PRESCALER_DATAWIDTH-1:0] upSPEEDCOUNTER_data_BUS_wire;
+wire 	SPEEDCOMPARATOR_2_STATEMACHINEPOINT_T0_wire;
+wire 	STATEMACHINEPOINT_upcount_wire;
+
+wire	STATEMACHINEPOINT_POINTselection_wire;
+
+wire	STATEMACHINEPOINT_clear_wire;
+wire	STATEMACHINEPOINT_loadPoint_wire;
+
+wire	[1:0] STATEMACHINEPOINT_shiftselection_wire;
+
+wire [DATAWIDTH_BUS-1:0] RegPOINTMATRIX_data7_Out;  
+wire [DATAWIDTH_BUS-1:0] RegPOINTMATRIX_data6_Out;
+wire [DATAWIDTH_BUS-1:0] RegPOINTMATRIX_data5_Out;
+wire [DATAWIDTH_BUS-1:0] RegPOINTMATRIX_data4_Out;
+wire [DATAWIDTH_BUS-1:0] RegPOINTMATRIX_data3_Out;
+wire [DATAWIDTH_BUS-1:0] RegPOINTMATRIX_data2_Out;
+wire [DATAWIDTH_BUS-1:0] RegPOINTMATRIX_data1_Out;
+wire [DATAWIDTH_BUS-1:0] RegPOINTMATRIX_data0_Out;
+
+//BACKGROUND
+
+wire STATEMACHINEMAP_clear_wire;
+wire STATEMACHINEMAP_load_wire;
+
+// OBSTACLES
+
+wire [DATAWIDTH_OBSTACLESselection-1:0] STATEMACHINEMAP_OBSselection_wire;
+
+wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data7_wire;
+wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data6_wire;
+wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data5_wire;
+wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data4_wire;
+wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data3_wire;
+wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data2_wire;
+wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data1_wire;
+wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data0_wire;
+
+ 
+
+
+//HOUSES
+
+wire [DATAWIDTH_HOUSESselection-1:0] STATEMACHINEMAP_HOUSESselection_wire;
+
+wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data7_wire;
+wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data6_wire;
+wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data5_wire;
+wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data4_wire;
+wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data3_wire;
+wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data2_wire;
+wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data1_wire;
+wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data0_wire;
+
 
 // GAME
 wire [DATAWIDTH_BUS-1:0] regGAME_data7_wire;
@@ -205,13 +266,15 @@ wire [DATAWIDTH_BUS-1:0] regGAME_data5_wire;
 wire [DATAWIDTH_BUS-1:0] regGAME_data4_wire;
 wire [DATAWIDTH_BUS-1:0] regGAME_data3_wire;
 wire [DATAWIDTH_BUS-1:0] regGAME_data2_wire;
-
-
 wire [DATAWIDTH_BUS-1:0] regGAME_data1_wire;
 wire [DATAWIDTH_BUS-1:0] regGAME_data0_wire;
 
 wire 	[7:0] data_max;
 wire 	[2:0] add;
+
+
+wire [DATAWIDTH_BUS-1:0] upCOUNTER_2_BIN2BCD1_data_BUS_wire;
+wire [DISPLAY_DATAWIDTH-1:0] BIN2BCD1_2_SEVENSEG1_data_BUS_wire;
 
 //=======================================================
 //  Structural coding
