@@ -20,6 +20,7 @@
 //=======================================================
 module BB_SYSTEM (
 //////////// OUTPUTS //////////
+	BB_SYSTEM_display_OutBUS,
 	BB_SYSTEM_max7219DIN_Out,
 	BB_SYSTEM_max7219NCS_Out,
 	BB_SYSTEM_max7219CLK_Out,
@@ -38,22 +39,142 @@ module BB_SYSTEM (
 //=======================================================
 //  PARAMETER declarations
 //=======================================================
- parameter DATAWIDTH_BUS = 8;
- parameter PRESCALER_DATAWIDTH = 23;
- parameter DISPLAY_DATAWIDTH = 12;
- 
- parameter DATA_FIXED_INITREGPOINT_7 = 8'b00010000;
- parameter DATA_FIXED_INITREGPOINT_6 = 8'b00111000;
- parameter DATA_FIXED_INITREGPOINT_5 = 8'b01111100;
- parameter DATA_FIXED_INITREGPOINT_4 = 8'b01111100;
- parameter DATA_FIXED_INITREGPOINT_3 = 8'b00111000;
- parameter DATA_FIXED_INITREGPOINT_2 = 8'b00010000;
- parameter DATA_FIXED_INITREGPOINT_1 = 8'b00000000;
- parameter DATA_FIXED_INITREGPOINT_0 = 8'b00010000;
- 
+	parameter DATAWIDTH_BUS = 8;
+	parameter PRESCALER_DATAWIDTH = 23;
+	parameter DISPLAY_DATAWIDTH = 12;
+
+
+//-------------------------------------------------------
+ // Parametros iniciales pointReg.
+ //------------------------------------------------------
+
+parameter DATA_FIXED_INITREGPOINT_7 = 8'b00010000;
+parameter DATA_FIXED_INITREGPOINT_6 = 8'b00000000;
+parameter DATA_FIXED_INITREGPOINT_5 = 8'b00000000;
+parameter DATA_FIXED_INITREGPOINT_4 = 8'b00000000;
+parameter DATA_FIXED_INITREGPOINT_3 = 8'b00000000;
+parameter DATA_FIXED_INITREGPOINT_2 = 8'b00000000;
+parameter DATA_FIXED_INITREGPOINT_1 = 8'b00000000;
+parameter DATA_FIXED_INITREGPOINT_0 = 8'b00000000;
+
+
+
+//---------------------------------------------------------
+// Parametros Pantallas
+//---------------------------------------------------------
+
+// Parametros loss. 
+
+parameter DATA_FIXED_loss_7 = 8'b00000000;
+parameter DATA_FIXED_loss_6 = 8'b01000010;
+parameter DATA_FIXED_loss_5 = 8'b00100100;
+parameter DATA_FIXED_loss_4 = 8'b00011000;
+parameter DATA_FIXED_loss_3 = 8'b00011000;
+parameter DATA_FIXED_loss_2 = 8'b00100100;
+parameter DATA_FIXED_loss_1 = 8'b01000010;
+parameter DATA_FIXED_loss_0 = 8'b00000000;
+
+// Parametros win. 
+parameter DATA_FIXED_win_7 = 8'b00000000;
+parameter DATA_FIXED_win_6 = 8'b00000000;
+parameter DATA_FIXED_win_5 = 8'b00100100;
+parameter DATA_FIXED_win_4 = 8'b00000000;
+parameter DATA_FIXED_win_3 = 8'b01000010;
+parameter DATA_FIXED_win_2 = 8'b00111100;
+parameter DATA_FIXED_win_1 = 8'b00000000;
+parameter DATA_FIXED_win_0 = 8'b00000000;
+
+
+//------------------------------------------------------------
+//Parametros cambio nivel 
+//------------------------------------------------------------
+
+// Parametros Cambio nivel 1 . 
+parameter DATA_FIXED_LEVEL1_7 = 8'b00000000;
+parameter DATA_FIXED_LEVEL1_6 = 8'b00011000;
+parameter DATA_FIXED_LEVEL1_5 = 8'b00101000;
+parameter DATA_FIXED_LEVEL1_4 = 8'b01001000;
+parameter DATA_FIXED_LEVEL1_3 = 8'b00001000;
+parameter DATA_FIXED_LEVEL1_2 = 8'b00001000;
+parameter DATA_FIXED_LEVEL1_1 = 8'b01111110;
+parameter DATA_FIXED_LEVEL1_0 = 8'b00000000;
+
+// Parametros Cambio nivel 2 . 
+parameter DATA_FIXED_LEVEL2_7 = 8'b00000000;
+parameter DATA_FIXED_LEVEL2_6 = 8'b01111110;
+parameter DATA_FIXED_LEVEL2_5 = 8'b00000010;
+parameter DATA_FIXED_LEVEL2_4 = 8'b00000010;
+parameter DATA_FIXED_LEVEL2_3 = 8'b01111110;
+parameter DATA_FIXED_LEVEL2_2 = 8'b01000000;
+parameter DATA_FIXED_LEVEL2_1 = 8'b01111110;
+parameter DATA_FIXED_LEVEL2_0 = 8'b00000000;
+
+
+// Parametros Cambio nivel 3 . 
+parameter DATA_FIXED_LEVEL3_7 = 8'b00000000;
+parameter DATA_FIXED_LEVEL3_6 = 8'b01111110;
+parameter DATA_FIXED_LEVEL3_5 = 8'b00000010;
+parameter DATA_FIXED_LEVEL3_4 = 8'b00111110;
+parameter DATA_FIXED_LEVEL3_3 = 8'b00111110;
+parameter DATA_FIXED_LEVEL3_2 = 8'b00000010;
+parameter DATA_FIXED_LEVEL3_1 = 8'b01111110;
+parameter DATA_FIXED_LEVEL3_0 = 8'b00000000;
+
+
+//---------------------------------------------------------------
+// Parametros obstaculos
+//---------------------------------------------------------------
+
+// Parametros  obstaculos  nivel 1 . 
+parameter DATA_FIXED_INITREGOBS1_7 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS1_6 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS1_5 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS1_4 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS1_3 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS1_2 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS1_1 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS1_0 = 8'b00000000;
+
+// Parametros  obstaculos  nivel 2 .
+parameter DATA_FIXED_INITREGOBS2_7 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS2_6 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS2_5 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS2_4 = 8'b00100110;
+parameter DATA_FIXED_INITREGOBS2_3 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS2_2 = 8'b01010100;
+parameter DATA_FIXED_INITREGOBS2_1 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS2_0 = 8'b00000000; 
+
+// Parametros  obstaculos  nivel 3 
+
+parameter DATA_FIXED_INITREGOBS3_7 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS3_6 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS3_5 = 8'b01100100;
+parameter DATA_FIXED_INITREGOBS3_4 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS3_3 = 8'b00010010;
+parameter DATA_FIXED_INITREGOBS3_2 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS3_1 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS3_0 = 8'b00000000;. 
+
+//Parametros Casas
+//----------------------------------------------------------
+// Parametros  casas nivel 1 . 
+ parameter DATA_FIXED_INITREGHOUSES1_1 = 8'b00000000;
+ parameter DATA_FIXED_INITREGHOUSES1_0 = 8'b10111011;
+
+// Parametros  casas nivel 2 . 
+ parameter DATA_FIXED_INITREGHOUSES2_1 = 8'b00000000;
+ parameter DATA_FIXED_INITREGHOUSES2_0 = 8'b11110011;
+
+// Parametros  casas nivel 3 . 
+ parameter DATA_FIXED_INITREGHOUSES3_1 = 8'b11011011;
+ parameter DATA_FIXED_INITREGHOUSES3_0 = 8'b10011011;
+
+
  //=======================================================
 //  PORT declarations
 //=======================================================
+output		[DISPLAY_DATAWIDTH-1:0] BB_SYSTEM_display_OutBUS;
 output		BB_SYSTEM_max7219DIN_Out;
 output		BB_SYSTEM_max7219NCS_Out;
 output		BB_SYSTEM_max7219CLK_Out;
@@ -67,6 +188,8 @@ input		BB_SYSTEM_RESET_InHigh;
 input		BB_SYSTEM_startButton_InLow;
 input		BB_SYSTEM_leftButton_InLow;
 input		BB_SYSTEM_rightButton_InLow;
+
+
 //=======================================================
 //  REG/WIRE declarations
 //=======================================================
@@ -82,6 +205,8 @@ wire [DATAWIDTH_BUS-1:0] regGAME_data5_wire;
 wire [DATAWIDTH_BUS-1:0] regGAME_data4_wire;
 wire [DATAWIDTH_BUS-1:0] regGAME_data3_wire;
 wire [DATAWIDTH_BUS-1:0] regGAME_data2_wire;
+
+
 wire [DATAWIDTH_BUS-1:0] regGAME_data1_wire;
 wire [DATAWIDTH_BUS-1:0] regGAME_data0_wire;
 
