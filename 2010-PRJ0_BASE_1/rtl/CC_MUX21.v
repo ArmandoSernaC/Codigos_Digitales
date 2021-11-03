@@ -17,7 +17,7 @@ module CC_MUX21 #(parameter MUX21_DATAWIDTH=8)(
 //=======================================================
 //  PORT declarations
 //=======================================================
-output	reg CC_MUX21_z_Out;
+output	reg [MUX21_DATAWIDTH-1:0] CC_MUX21_z_Out;
 input 	CC_MUX21_select_InBUS;
 input 	[MUX21_DATAWIDTH-1:0] CC_MUX21_data1_InBUS;
 input 	[MUX21_DATAWIDTH-1:0] CC_MUX21_data2_InBUS;

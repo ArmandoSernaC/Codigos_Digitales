@@ -128,14 +128,8 @@ parameter DATA_FIXED_LEVEL3_0 = 8'b00000000;
 //---------------------------------------------------------------
 
 // Parametros  obstaculos  nivel 1 . 
-parameter DATA_FIXED_INITREGOBS1_7 = 8'b00000000;
-parameter DATA_FIXED_INITREGOBS1_6 = 8'b00000000;
-parameter DATA_FIXED_INITREGOBS1_5 = 8'b00000000;
-parameter DATA_FIXED_INITREGOBS1_4 = 8'b00000000;
-parameter DATA_FIXED_INITREGOBS1_3 = 8'b00000000;
-parameter DATA_FIXED_INITREGOBS1_2 = 8'b00000000;
-parameter DATA_FIXED_INITREGOBS1_1 = 8'b00000000;
-parameter DATA_FIXED_INITREGOBS1_0 = 8'b00000000;
+parameter DATA_FIXED_INITREGOBS1= 8'b00000000;
+ 
 
 // Parametros  obstaculos  nivel 2 .
 parameter DATA_FIXED_INITREGOBS2_7 = 8'b00000000;
@@ -196,22 +190,24 @@ input		BB_SYSTEM_rightButton_InLow;
 //  REG/WIRE declarations
 //=======================================================
 // BUTTONs
-wire	BB_SYSTEM_resetButton_InHigh_wire;
+//wire	BB_SYSTEM_resetButton_InHigh_wire;
 wire 	BB_SYSTEM_startButton_InLow_wire; 
 wire 	BB_SYSTEM_leftButton_InLow_wire;
 wire 	BB_SYSTEM_rightButton_InLow_wire;
 
 
-
-//POINT
 wire 	[PRESCALER_DATAWIDTH-1:0] upSPEEDCOUNTER_data_BUS_wire;
 wire 	SPEEDCOMPARATOR_2_STATEMACHINEPOINT_T0_wire;
+//POINT
+
+
 wire 	STATEMACHINEPOINT_upcount_wire;
 
 wire	STATEMACHINEPOINT_POINTselection_wire;
+wire    [DATAWIDTH_BUS-1:0] MULTIPLEXOR_PointSelection_wire;
 
 wire	STATEMACHINEPOINT_clear_wire;
-wire	STATEMACHINEPOINT_loadPoint_wire;
+wire	STATEMACHINEPOINT_load_Point_wire;
 
 wire	STATEMACHINEPOINT_shiftselection_wire;
 
@@ -224,39 +220,39 @@ wire [DATAWIDTH_BUS-1:0] RegPOINTMATRIX_data2_Out;
 wire [DATAWIDTH_BUS-1:0] RegPOINTMATRIX_data1_Out;
 wire [DATAWIDTH_BUS-1:0] RegPOINTMATRIX_data0_Out;
 
-//BACKGROUND
+// //BACKGROUND
 
-wire STATEMACHINEMAP_clear_wire;
-wire STATEMACHINEMAP_load_wire;
+// wire STATEMACHINEMAP_clear_wire;
+// wire STATEMACHINEMAP_load_wire;
 
-// OBSTACLES
+// // OBSTACLES
 
-wire [DATAWIDTH_OBSTACLESselection-1:0] STATEMACHINEMAP_OBSselection_wire;
+// wire [DATAWIDTH_OBSTACLESselection-1:0] STATEMACHINEMAP_OBSselection_wire;
 
-wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data7_wire;
-wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data6_wire;
-wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data5_wire;
-wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data4_wire;
-wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data3_wire;
-wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data2_wire;
-wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data1_wire;
-wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data0_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data7_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data6_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data5_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data4_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data3_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data2_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data1_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEOBS_data0_wire;
 
  
 
 
-//HOUSES
+// //HOUSES
 
-wire [DATAWIDTH_HOUSESselection-1:0] STATEMACHINEMAP_HOUSESselection_wire;
+// wire [DATAWIDTH_HOUSESselection-1:0] STATEMACHINEMAP_HOUSESselection_wire;
 
-wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data7_wire;
-wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data6_wire;
-wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data5_wire;
-wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data4_wire;
-wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data3_wire;
-wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data2_wire;
-wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data1_wire;
-wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data0_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data7_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data6_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data5_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data4_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data3_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data2_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data1_wire;
+// wire [DATAWIDTH_BUS-1:0] regGAMEHOUSE_data0_wire;
 
 
 // GAME
@@ -285,21 +281,21 @@ wire [DISPLAY_DATAWIDTH-1:0] BIN2BCD1_2_SEVENSEG1_data_BUS_wire;
 //######################################################################
 SC_DEBOUNCE1 SC_DEBOUNCE1_u0 (
 // port map - connection between master ports and signals/registers   
-	.SC_DEBOUNCE1_button_Out(BB_SYSTEM_startButton_InLow_cwire),
+	.SC_DEBOUNCE1_button_Out(BB_SYSTEM_startButton_InLow_wire),
 	.SC_DEBOUNCE1_CLOCK_50(BB_SYSTEM_CLOCK_50),
 	.SC_DEBOUNCE1_RESET_InHigh(BB_SYSTEM_RESET_InHigh),
 	.SC_DEBOUNCE1_button_In(~BB_SYSTEM_startButton_InLow)
 );
 SC_DEBOUNCE1 SC_DEBOUNCE1_u1 (
 // port map - connection between master ports and signals/registers   
-	.SC_DEBOUNCE1_button_Out(BB_SYSTEM_leftButton_InLow_cwire),
+	.SC_DEBOUNCE1_button_Out(BB_SYSTEM_leftButton_InLow_wire),
 	.SC_DEBOUNCE1_CLOCK_50(BB_SYSTEM_CLOCK_50),
 	.SC_DEBOUNCE1_RESET_InHigh(BB_SYSTEM_RESET_InHigh),
 	.SC_DEBOUNCE1_button_In(~BB_SYSTEM_leftButton_InLow)
 );
 SC_DEBOUNCE1 SC_DEBOUNCE1_u2 (
 // port map - connection between master ports and signals/registers   
-	.SC_DEBOUNCE1_button_Out(BB_SYSTEM_rightButton_InLow_cwire),
+	.SC_DEBOUNCE1_button_Out(BB_SYSTEM_rightButton_InLow_wire),
 	.SC_DEBOUNCE1_CLOCK_50(BB_SYSTEM_CLOCK_50),
 	.SC_DEBOUNCE1_RESET_InHigh(BB_SYSTEM_RESET_InHigh),
 	.SC_DEBOUNCE1_button_In(~BB_SYSTEM_rightButton_InLow)
@@ -310,6 +306,110 @@ SC_DEBOUNCE1 SC_DEBOUNCE1_u2 (
 //######################################################################
 
 
+//######################################################################
+//#	POINT
+//######################################################################
+
+CC_MUX21 #(.MUX21_DATAWIDTH(DATAWIDTH_BUS)) CC_MUX21_u0 (
+// port map - connection between master ports and signals/registers   
+	.CC_MUX21_z_Out(MULTIPLEXOR_PointSelection_wire), 
+	.CC_MUX21_select_InBUS(STATEMACHINEPOINT_POINTselection_wire),
+	.CC_MUX21_data1_InBUS(DATA_FIXED_INITREGPOINT_0),
+	.CC_MUX21_data2_InBUS(DATA_FIXED_INITREGPOINT_7)
+);
+SC_RegPOINTTYPE #(.RegPOINTTYPE_DATAWIDTH(DATAWIDTH_BUS), .DATA_FIXED_INITREGPOINT(DATA_FIXED_INITREGPOINT_7)) SC_RegPOINTTYPE_u7 (
+// port map - connection between master ports and signals/registers   
+	.SC_RegPOINTTYPE_data_OutBUS(POINTMATRIX_data7_Out),
+	.SC_RegPOINTTYPE_CLOCK_50(BB_SYSTEM_CLOCK_50),
+	.SC_RegPOINTTYPE_RESET_InHigh(BB_SYSTEM_RESET_InHigh),
+	.SC_RegPOINTTYPE_clear_InLow(STATEMACHINEPOINT_clear_wire),
+	.SC_RegPOINTTYPE_load0_InLow(STATEMACHINEPOINT_load_Point_wire),
+	.SC_RegPOINTTYPE_shiftselection_In(STATEMACHINEPOINT_shiftselection_wire),
+	.SC_RegPOINTTYPE_data0_InBUS( MULTIPLEXOR_PointSelection_wire )
+);
+SC_RegPOINTTYPE #(.RegPOINTTYPE_DATAWIDTH(DATAWIDTH_BUS), .DATA_FIXED_INITREGPOINT(DATA_FIXED_INITREGPOINT_6)) SC_RegPOINTTYPE_u6 (
+// port map - connection between master ports and signals/registers   
+	.SC_RegPOINTTYPE_data_OutBUS(POINTMATRIX_data6_Out),
+	.SC_RegPOINTTYPE_CLOCK_50(BB_SYSTEM_CLOCK_50),
+	.SC_RegPOINTTYPE_RESET_InHigh(BB_SYSTEM_RESET_InHigh),
+	.SC_RegPOINTTYPE_clear_InLow(STATEMACHINEPOINT_clear_wire),
+	.SC_RegPOINTTYPE_load0_InLow(STATEMACHINEPOINT_load_Point_wire),
+	.SC_RegPOINTTYPE_shiftselection_In(STATEMACHINEPOINT_shiftselection_wire),
+	.SC_RegPOINTTYPE_data0_InBUS(RegPOINTTYPE_2_POINTMATRIX_data7_Out)
+);
+SC_RegPOINTTYPE #(.RegPOINTTYPE_DATAWIDTH(DATAWIDTH_BUS), .DATA_FIXED_INITREGPOINT(DATA_FIXED_INITREGPOINT_5)) SC_RegPOINTTYPE_u5 (
+// port map - connection between master ports and signals/registers   
+	.SC_RegPOINTTYPE_data_OutBUS(POINTMATRIX_data5_Out),
+	.SC_RegPOINTTYPE_CLOCK_50(BB_SYSTEM_CLOCK_50),
+	.SC_RegPOINTTYPE_RESET_InHigh(BB_SYSTEM_RESET_InHigh),
+	.SC_RegPOINTTYPE_clear_InLow(STATEMACHINEPOINT_clear_wire),
+	.SC_RegPOINTTYPE_load0_InLow(STATEMACHINEPOINT_load_Point_wire),
+	.SC_RegPOINTTYPE_shiftselection_In(STATEMACHINEPOINT_shiftselection_wire),
+	.SC_RegPOINTTYPE_data0_InBUS(RegPOINTTYPE_2_POINTMATRIX_data6_Out)
+);
+SC_RegPOINTTYPE #(.RegPOINTTYPE_DATAWIDTH(DATAWIDTH_BUS), .DATA_FIXED_INITREGPOINT(DATA_FIXED_INITREGPOINT_4)) SC_RegPOINTTYPE_u4 (
+// port map - connection between master ports and signals/registers   
+	.SC_RegPOINTTYPE_data_OutBUS(POINTMATRIX_data4_Out),
+	.SC_RegPOINTTYPE_CLOCK_50(BB_SYSTEM_CLOCK_50),
+	.SC_RegPOINTTYPE_RESET_InHigh(BB_SYSTEM_RESET_InHigh),
+	.SC_RegPOINTTYPE_clear_InLow(STATEMACHINEPOINT_clear_wire),
+	.SC_RegPOINTTYPE_load0_InLow(STATEMACHINEPOINT_load_Point_wire),
+	.SC_RegPOINTTYPE_shiftselection_In(STATEMACHINEPOINT_shiftselection_wire),
+	.SC_RegPOINTTYPE_data0_InBUS(RegPOINTTYPE_2_POINTMATRIX_data5_Out)
+);
+SC_RegPOINTTYPE #(.RegPOINTTYPE_DATAWIDTH(DATAWIDTH_BUS), .DATA_FIXED_INITREGPOINT(DATA_FIXED_INITREGPOINT_3)) SC_RegPOINTTYPE_u3 (
+// port map - connection between master ports and signals/registers   
+	.SC_RegPOINTTYPE_data_OutBUS(POINTMATRIX_data3_Out),
+	.SC_RegPOINTTYPE_CLOCK_50(BB_SYSTEM_CLOCK_50),
+	.SC_RegPOINTTYPE_RESET_InHigh(BB_SYSTEM_RESET_InHigh),
+	.SC_RegPOINTTYPE_clear_InLow(STATEMACHINEPOINT_clear_wire),
+	.SC_RegPOINTTYPE_load0_InLow(STATEMACHINEPOINT_load_Point_wire),
+	.SC_RegPOINTTYPE_shiftselection_In(STATEMACHINEPOINT_shiftselection_wire),
+	.SC_RegPOINTTYPE_data0_InBUS(POINTMATRIX_data4_Out)
+);
+SC_RegPOINTTYPE #(.RegPOINTTYPE_DATAWIDTH(DATAWIDTH_BUS), .DATA_FIXED_INITREGPOINT(DATA_FIXED_INITREGPOINT_2)) SC_RegPOINTTYPE_u2 (
+// port map - connection between master ports and signals/registers   
+	.SC_RegPOINTTYPE_data_OutBUS(POINTMATRIX_data2_Out),
+	.SC_RegPOINTTYPE_CLOCK_50(BB_SYSTEM_CLOCK_50),
+	.SC_RegPOINTTYPE_RESET_InHigh(BB_SYSTEM_RESET_InHigh),
+	.SC_RegPOINTTYPE_clear_InLow(STATEMACHINEPOINT_clear_wire),
+	.SC_RegPOINTTYPE_load0_InLow(STATEMACHINEPOINT_load_Point_wire),
+	.SC_RegPOINTTYPE_shiftselection_In(STATEMACHINEPOINT_shiftselection_wire),
+	.SC_RegPOINTTYPE_data0_InBUS(POINTMATRIX_data3_Out)
+);
+SC_RegPOINTTYPE #(.RegPOINTTYPE_DATAWIDTH(DATAWIDTH_BUS), .DATA_FIXED_INITREGPOINT(DATA_FIXED_INITREGPOINT_1)) SC_RegPOINTTYPE_u1 (
+// port map - connection between master ports and signals/registers   
+	.SC_RegPOINTTYPE_data_OutBUS(POINTMATRIX_data1_Out),
+	.SC_RegPOINTTYPE_CLOCK_50(BB_SYSTEM_CLOCK_50),
+	.SC_RegPOINTTYPE_RESET_InHigh(BB_SYSTEM_RESET_InHigh),
+	.SC_RegPOINTTYPE_clear_InLow(STATEMACHINEPOINT_clear_wire),
+	.SC_RegPOINTTYPE_load0_InLow(STATEMACHINEPOINT_load_Point_wire),
+	.SC_RegPOINTTYPE_shiftselection_In(STATEMACHINEPOINT_shiftselection_wire),
+	.SC_RegPOINTTYPE_data0_InBUS(POINTMATRIX_data2_Out)
+);
+SC_RegPOINTTYPE #(.RegPOINTTYPE_DATAWIDTH(DATAWIDTH_BUS), .DATA_FIXED_INITREGPOINT(DATA_FIXED_INITREGPOINT_0)) SC_RegPOINTTYPE_u0 (
+// port map - connection between master ports and signals/registers   
+	.SC_RegPOINTTYPE_data_OutBUS(POINTMATRIX_data0_Out),
+	.SC_RegPOINTTYPE_CLOCK_50(BB_SYSTEM_CLOCK_50),
+	.SC_RegPOINTTYPE_RESET_InHigh(BB_SYSTEM_RESET_InHigh),
+	.SC_RegPOINTTYPE_clear_InLow(STATEMACHINEPOINT_clear_wire),
+	.SC_RegPOINTTYPE_load0_InLow(STATEMACHINEPOINT_load_Point_wire),
+	.SC_RegPOINTTYPE_shiftselection_In(STATEMACHINEPOINT_shiftselection_wire),
+	.SC_RegPOINTTYPE_data0_InBUS(POINTMATRIX_data1_Out)
+);
+
+SC_STATEMACHINEPOINT SC_STATEMACHINEPOINT_u0 (
+// port map - connection between master ports and signals/registers   
+	.SC_STATEMACHINEPOINT_clear_OutLow(STATEMACHINEPOINT_clear_wire), 
+	.SC_STATEMACHINEPOINT_load0_OutLow(STATEMACHINEPOINT_load_Point_wire), 
+	.SC_STATEMACHINEPOINT_shiftselection_Out(STATEMACHINEPOINT_shiftselection_wire),
+	.SC_STATEMACHINEPOINT_CLOCK_50(BB_SYSTEM_CLOCK_50),
+	.SC_STATEMACHINEPOINT_RESET_InHigh(BB_SYSTEM_RESET_InHigh),
+	.SC_STATEMACHINEPOINT_startButton_InLow(BB_SYSTEM_startButton_InLow_wire), 
+	.SC_STATEMACHINEPOINT_leftButton_InLow(BB_SYSTEM_leftButton_InLow_wire), 
+	.SC_STATEMACHINEPOINT_rightButton_InLow(BB_SYSTEM_rightButton_InLow_wire),
+	.SC_STATEMACHINEPOINT_T0_InLow(SPEEDCOMPARATOR_2_STATEMACHINEBACKG_T0_wire)
+);
 
 
 //######################################################################
