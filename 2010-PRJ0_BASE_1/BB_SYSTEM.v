@@ -197,7 +197,7 @@ input		BB_SYSTEM_rightButton_InLow;
 //=======================================================
 // BUTTONs
 wire	BB_SYSTEM_resetButton_InHigh_wire;
-wire 	BB_SYSTEM_startButton_InLow_wire;
+wire 	BB_SYSTEM_startButton_InLow_wire; 
 wire 	BB_SYSTEM_leftButton_InLow_wire;
 wire 	BB_SYSTEM_rightButton_InLow_wire;
 
@@ -213,7 +213,7 @@ wire	STATEMACHINEPOINT_POINTselection_wire;
 wire	STATEMACHINEPOINT_clear_wire;
 wire	STATEMACHINEPOINT_loadPoint_wire;
 
-wire	[1:0] STATEMACHINEPOINT_shiftselection_wire;
+wire	STATEMACHINEPOINT_shiftselection_wire;
 
 wire [DATAWIDTH_BUS-1:0] RegPOINTMATRIX_data7_Out;  
 wire [DATAWIDTH_BUS-1:0] RegPOINTMATRIX_data6_Out;
