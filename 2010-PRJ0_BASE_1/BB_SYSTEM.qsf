@@ -6,7 +6,7 @@ set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE22F17C6
 set_global_assignment -name TOP_LEVEL_ENTITY "BB_SYSTEM"
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 12.0
-set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "19.1.0 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "13:35:02 FEBRUARY 19,2018"
 set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
 set_global_assignment -name DEVICE_FILTER_PIN_COUNT 256
@@ -386,6 +386,9 @@ set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 
 
 
+set_global_assignment -name VERILOG_FILE rtl/CC_OR.v
+set_global_assignment -name VERILOG_FILE rtl/CC_COMPARATOR.v
+set_global_assignment -name VERILOG_FILE rtl/CC_AND.v
 set_global_assignment -name SDC_FILE BB_SYSTEM.sdc
 set_global_assignment -name VERILOG_FILE rtl/shift_reg_start_done.v
 set_global_assignment -name VERILOG_FILE rtl/max7219_ctrl.v

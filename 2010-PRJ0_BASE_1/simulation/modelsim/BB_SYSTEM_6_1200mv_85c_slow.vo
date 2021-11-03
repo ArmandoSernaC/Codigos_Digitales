@@ -1,6 +1,6 @@
-// Copyright (C) 2018  Intel Corporation. All rights reserved.
+// Copyright (C) 2019  Intel Corporation. All rights reserved.
 // Your use of Intel Corporation's design tools, logic functions 
-// and other software and tools, and its AMPP partner logic 
+// and other software and tools, and any partner logic 
 // functions, and any output files from any of the foregoing 
 // (including device programming or simulation files), and any 
 // associated documentation or information are expressly subject 
@@ -10,13 +10,14 @@
 // agreement, including, without limitation, that your use is for
 // the sole purpose of programming logic devices manufactured by
 // Intel and sold by Intel or its authorized distributors.  Please
-// refer to the applicable agreement for further details.
+// refer to the applicable agreement for further details, at
+// https://fpgasoftware.intel.com/eula.
 
 // VENDOR "Altera"
 // PROGRAM "Quartus Prime"
-// VERSION "Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition"
+// VERSION "Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition"
 
-// DATE "04/22/2020 10:10:48"
+// DATE "11/03/2021 01:10:56"
 
 // 
 // Device: Altera EP4CE22F17C6 Package FBGA256
@@ -135,7 +136,7 @@ wire \matrix_ctrl_unit_0|state_reg.UPDATE_FRAME~q ;
 wire \matrix_ctrl_unit_0|state_reg~48_combout ;
 wire \matrix_ctrl_unit_0|state_reg.START~q ;
 wire \matrix_ctrl_unit_0|state_reg.MAIN_LOOP~clkctrl_outclk ;
-wire \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ;
+wire \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ;
 wire \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[0]~17 ;
 wire \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[1]~19_combout ;
 wire \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[1]~20 ;
@@ -339,13 +340,13 @@ wire \SC_DEBOUNCE1_u2|Add0~20_combout ;
 wire \SC_DEBOUNCE1_u2|Add0~22_combout ;
 wire \SC_DEBOUNCE1_u2|SC_DEBOUNCE1_button_Out~0_combout ;
 wire \SC_DEBOUNCE1_u2|SC_DEBOUNCE1_button_Out~q ;
-wire [1:0] \matrix_ctrl_unit_0|ctrl_sr ;
+wire [15:0] \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg ;
 wire [3:0] \matrix_ctrl_unit_0|cur_col_reg ;
-wire [15:0] \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|r_reg ;
+wire [10:0] \SC_DEBOUNCE1_u0|q_reg ;
 wire [10:0] \SC_DEBOUNCE1_u2|q_reg ;
 wire [10:0] \SC_DEBOUNCE1_u1|q_reg ;
-wire [10:0] \SC_DEBOUNCE1_u0|q_reg ;
-wire [15:0] \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg ;
+wire [1:0] \matrix_ctrl_unit_0|ctrl_sr ;
+wire [15:0] \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|r_reg ;
 
 
 hard_block auto_generated_inst(
@@ -1358,20 +1359,20 @@ defparam \matrix_ctrl_unit_0|ctrl_sr[0] .sum_lutc_input = "datac";
 // synopsys translate_on
 
 // Location: LCCOMB_X29_Y10_N4
-cycloneive_lcell_comb \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18 (
+cycloneive_lcell_comb \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18 (
 // Equation(s):
-// \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout  = ((\matrix_ctrl_unit_0|ctrl_sr [1] & \matrix_ctrl_unit_0|ctrl_sr [0])) # (!\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|Equal0~4_combout )
+// \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout  = ((\matrix_ctrl_unit_0|ctrl_sr [1] & \matrix_ctrl_unit_0|ctrl_sr [0])) # (!\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|Equal0~4_combout )
 
 	.dataa(gnd),
 	.datab(\matrix_ctrl_unit_0|ctrl_sr [1]),
 	.datac(\matrix_ctrl_unit_0|ctrl_sr [0]),
 	.datad(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|Equal0~4_combout ),
 	.cin(gnd),
-	.combout(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.combout(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.cout());
 // synopsys translate_off
-defparam \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18 .lut_mask = 16'hC0FF;
-defparam \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18 .sum_lutc_input = "datac";
+defparam \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18 .lut_mask = 16'hC0FF;
+defparam \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18 .sum_lutc_input = "datac";
 // synopsys translate_on
 
 // Location: FF_X29_Y11_N1
@@ -1381,7 +1382,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[0] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -1419,7 +1420,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[1] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -1457,7 +1458,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[2] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -1495,7 +1496,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[3] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -1551,7 +1552,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[4] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -1589,7 +1590,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[5] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -1627,7 +1628,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[6] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -1665,7 +1666,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[7] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -1703,7 +1704,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[8] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -1741,7 +1742,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -1779,7 +1780,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[10] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -1817,7 +1818,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[11] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -1891,7 +1892,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[12] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -1929,7 +1930,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -1967,7 +1968,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[14] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
@@ -2003,7 +2004,7 @@ dffeas \matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[15] (
 	.asdata(vcc),
 	.clrn(!\BB_SYSTEM_RESET_InHigh~input_o ),
 	.aload(gnd),
-	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[9]~18_combout ),
+	.sclr(\matrix_ctrl_unit_0|shift_reg_start_done_unit_0|cnt_reg[13]~18_combout ),
 	.sload(gnd),
 	.ena(\matrix_ctrl_unit_0|Trig_SignalPOS~combout ),
 	.devclrn(devclrn),
