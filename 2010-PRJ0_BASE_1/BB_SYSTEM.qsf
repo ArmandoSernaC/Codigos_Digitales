@@ -386,6 +386,8 @@ set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 
 
 
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name VERILOG_FILE "rtl/CC_COMPARATOR _FILAS.v"
 set_global_assignment -name VERILOG_FILE rtl/CC_OR.v
 set_global_assignment -name VERILOG_FILE rtl/CC_COMPARATOR.v
 set_global_assignment -name VERILOG_FILE rtl/CC_AND.v
@@ -395,4 +397,3 @@ set_global_assignment -name VERILOG_FILE rtl/max7219_ctrl.v
 set_global_assignment -name VERILOG_FILE rtl/SC_DEBOUNCE1.v
 set_global_assignment -name VERILOG_FILE BB_SYSTEM.v
 set_global_assignment -name SOURCE_FILE db/BB_SYSTEM.cmp.rdb
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
